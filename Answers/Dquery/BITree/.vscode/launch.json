@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DQUERY",
+            "request": "launch",
+            "mainClass": "DQUERY"
+        }
+    ]
+}

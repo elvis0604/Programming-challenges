@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ES",
+            "request": "launch",
+            "mainClass": "ES",
+            "projectName": "heapsort_e5378e08"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Rextester",
+            "request": "launch",
+            "mainClass": "MergeSort"
+        }
+    ]
+}

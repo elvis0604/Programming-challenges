@@ -1,0 +1,6 @@
+Replace 
+	BufferedReader reader = new BufferedReader(new FileReader(file));
+	PrintWriter out = new PrintWriter("output.txt");
+with	
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	PrintWriter out = new PrintWriter(System.out);

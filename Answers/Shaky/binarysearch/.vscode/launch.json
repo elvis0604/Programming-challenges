@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MAIN8_C",
+            "request": "launch",
+            "mainClass": "MAIN8_C"
+        }
+    ]
+}
