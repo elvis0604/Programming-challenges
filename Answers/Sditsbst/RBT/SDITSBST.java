@@ -4,34 +4,82 @@ import java.io.*;
 class SDITSBST
 {
     Node root = null;
-    void constructBST(long value)
-    {
-        root = insertBST(value, root);
-    }
+    static final int RED = 0;
+    static final int BLACK = 1;
     
-    //Standard insertion for BST
-    Node insertBST(long value, Node node)
+    void constructRBT(long value)
+    {
+        root = insertRBT(value, root, null);
+        root.color = BLACK; //Always set root back to black
+    }
+
+    Node insertRBT(long value, Node node, Node parent)
     {
         if(node == null)
         {
-            node = new Node(value);
-            return node;
+            node = new Node(value, parent);
         }
         
         if(node.value < value)
         {
-            node.num_right_sub++;
-            node.right = insertBST(value, node.right);
+            node.right = insertRBT(value, node.right, node);
         } 
         else if (node.value > value)
         {
-            node.num_left_sub++;
-            node.left = insertBST(value, node.left);
+            node.left = insertRBT(value, node.left, node);
         }
+
+        if(parent != null && node.color == RED && parent.color == RED)
+        {
+            Node grandparent = parent.prev;
+            Node temp = grandparent;
+            parent.right = grandparent;
+        }
+        
         return node;
     }
 
-    Node utilSearch(long value)
+    boolean isRed(Node node) 
+    {
+        if(node == null) 
+            return false;
+		else
+			return node.color == RED;
+    }
+  
+    public Node flipColor(Node node) 
+    {
+        node.color = RED;
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+		return node;
+	}
+	
+    public Node leftRotate(Node node) 
+    {
+		Node temp = node.right;
+		Node temp1 = temp.left;
+		
+		//Rotation
+		temp.left = node;
+		node.right = temp1;
+		
+		return temp;
+	}
+	
+    public Node rightRotate(Node node) 
+    {
+		Node temp = node.left;
+		Node temp1 = temp.right;
+		
+		//Rotation
+		temp.right = node;
+		node.left = temp1;
+		
+		return temp;
+	}
+
+    /*Node utilSearch(long value)
     {
         long index = 1;
         Node temp = search(value, root, index);
@@ -50,15 +98,15 @@ class SDITSBST
         } 
         else if(value <= node.value)
         {
-            index += node.num_right_sub; //Whenever we search left, collect all the number of right sub tree (all the elements larger than it)
-            return search(value, node.left, ++index);   //increment index to keep track of the index
+            index += node.num_right_sub;
+            return search(value, node.left, ++index);
         }
         else if(value >= node.value)
         {
             return search(value, node.right, index);
         }
         return null;
-    }
+    }*/
 
     public static void main(String[] args) throws IOException
     {
@@ -81,16 +129,16 @@ class SDITSBST
             long[] arr_input_convert = convert(arr_input);
             if(arr_input_convert[0] == 1)
             {
-                tree.constructBST(arr_input_convert[1]);   //Keep track of root then pass it back to construct BST
+                tree.constructRBT(arr_input_convert[1]);   //Keep track of root then pass it back to construct BST
             }
-            else
+            /*else
             {
                 result = tree.utilSearch(arr_input_convert[1]);
                 if(result == null)
                     out.println(("Data tidak ada"));
                 else
                     out.println(result.index);
-            }
+            }*/
         }
         out.flush();
         reader.close();
@@ -103,11 +151,13 @@ class SDITSBST
         long num_right_sub = 0;
         long num_left_sub = 0;
         long index = 0;
-        Node right, left;
+        int color = RED;
+        Node right, left, prev;
 
-        Node(long v)
+        Node(long v, Node p)
         {   
             value = v;
+            prev = p;
             right = left = null;
         }
     }
