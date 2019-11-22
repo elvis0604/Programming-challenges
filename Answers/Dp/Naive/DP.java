@@ -3,29 +3,29 @@ import java.io.*;
 class DP 
 { 
     static int coin_count = 0;
-    static int count(int coins[], int n, int C) 
+    static int count(int coins[], int n, int total) 
     { 
-        if (C == 0) 
+        if (total == 0) 
         {
             return 0; 
         }   
 
-        if (C < 0)
+        if (total < 0)
         {
             return 0;
         }
 
-        int res = Integer.MAX_VALUE;
+        int min_coin = Integer.MAX_VALUE;
         
         //Loop through each coin starting from highest
         //to get the coin count
         for(int i = n - 1; i >= 0; i--)
         {
-            int temp = count(coins, n, C - coins[i]);
-            if(temp + 1 < res)
-                res = temp + 1;
+            int temp = count(coins, n, total - coins[i]);
+            if(temp + 1 < min_coin)
+                min_coin = temp + 1;
         }
-        return res;
+        return min_coin;
     } 
     
 	public static void main(String[] args) 
