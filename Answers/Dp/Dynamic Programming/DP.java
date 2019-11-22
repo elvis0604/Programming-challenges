@@ -14,7 +14,7 @@ class DP
 
         if (total < 0)
         {
-            return 0;
+            return Integer.MAX_VALUE;
         }
 
         if(map.containsKey(total))
@@ -26,7 +26,7 @@ class DP
         for(int i = n - 1; i >= 0; i--)
         {
             int temp = count(coins, n, total - coins[i], map);
-            if(temp + 1 < min_coin)
+            if(temp != Integer.MAX_VALUE && temp + 1 < min_coin)
                 min_coin = temp + 1;
         }
         map.put(total, min_coin);
@@ -35,7 +35,7 @@ class DP
     
 	public static void main(String[] args) 
 	{ 
-        int arr[] = {1, 2};
+        int arr[] = {1, 2, 4};
         Map<Integer, Integer> map = new HashMap<>();
 		System.out.println(count(arr, arr.length, 4, map)); 
 	} 
