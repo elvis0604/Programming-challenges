@@ -28,8 +28,6 @@ class DP
         return res;
     } 
     
-	
-	// Driver program to test above function 
 	public static void main(String[] args) 
 	{ 
         int arr[] = {1, 2};
@@ -38,4 +36,3 @@ class DP
 
 } 
 
-// This article is contributed by vt_m. 
