@@ -25,9 +25,9 @@ class DP
         //to get the coin count
         for(int i = n - 1; i >= 0; i--)
         {
-            int temp = count(coins, n, total - coins[i], map);
-            if(temp != Integer.MAX_VALUE && temp + 1 < min_coin)
-                min_coin = temp + 1;
+            int coin = count(coins, n, total - coins[i], map);
+            if(coin != Integer.MAX_VALUE && coin + 1 < min_coin)
+                min_coin = coin + 1;
         }
         map.put(total, min_coin);
         return min_coin;
