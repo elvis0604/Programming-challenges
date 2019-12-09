@@ -54,7 +54,7 @@ class MST
         }
     }
 
-    static int Prim(Graph g, int start) 
+    static int Prim(Graph g, int src) 
     {
         Graph mst = new Graph(g.V);
         boolean[] visited = new boolean[g.V];
@@ -62,12 +62,12 @@ class MST
     
         // insert neighbours of first vertex
         PriorityQueue<Edge> edges = new PriorityQueue<Edge>();
-        Iterator<Edge> it = g.neighbours(start).iterator();
+        Iterator<Edge> it = g.neighbours(src).iterator();
         while (it.hasNext()) 
         {
             edges.add(it.next());
         }
-        visited[start] = true;
+        visited[src] = true;
     
         // loop until no edges remain
         while (!edges.isEmpty()) 
