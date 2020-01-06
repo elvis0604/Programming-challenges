@@ -56,33 +56,29 @@ class MST
 
     static int Prim(Graph g, int src) 
     {
-        Graph mst = new Graph(g.V);
         boolean[] visited = new boolean[g.V];
         int cost = 0;
     
         // insert neighbours of first vertex
         PriorityQueue<Edge> edges = new PriorityQueue<Edge>();
         Iterator<Edge> it = g.neighbours(src).iterator();
-        while (it.hasNext()) 
-        {
+        while(it.hasNext()) 
             edges.add(it.next());
-        }
         visited[src] = true;
     
         // loop until no edges remain
-        while (!edges.isEmpty()) 
+        while(!edges.isEmpty()) 
         {
             Edge e = edges.remove();
     
             // if adding makes no cycle
             if (!visited[e.dest]) 
             {
-                mst.addEdge(e);
                 visited[e.dest] = true;
     
                 // add neighbour edges of vertex if not visited
                 Iterator<Edge> i = g.neighbours(e.dest).iterator();
-                while (i.hasNext())
+                while(i.hasNext())
                     edges.add(i.next());
                 visited[e.dest] = true;
                 cost += e.weight;

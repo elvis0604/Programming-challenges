@@ -18,13 +18,13 @@ class BUSYMAN
 
     static class SortByEndTime implements Comparator<Interval>
     {
-        public int compare(Interval s, Interval e)    //Sort interval base on end time
+        public int compare(Interval s, Interval e)    // Sort interval base on end time
         {
             return s.end - e.end;
         }
     }
 
-    static int solve(Interval[] inv, int n) //Greedy
+    static int solve(Interval[] inv, int n) // Greedy
     {
         int count = 0;
 
@@ -33,8 +33,8 @@ class BUSYMAN
             int end = inv[i].end;
             count++;
             int j = i + 1;
-            while(j < n && end > inv[j].start)
-            {
+            while(j < n && end > inv[j].start)  // Comparing the end of the picked interval to the rest of the interval
+            {                                   // until getting one with higher or equal start time
                 j++;
             }
             i = j;
@@ -46,11 +46,11 @@ class BUSYMAN
     public static void main(String[] args) throws IOException
     {       
         File file = new File("test.txt");
-        /*BufferedReader reader = new BufferedReader(new FileReader(file));
-        PrintWriter out = new PrintWriter("output.txt");*/
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        PrintWriter out = new PrintWriter("output.txt");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(System.out);
+        /*BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(System.out);*/
 
         int number_of_test = Integer.parseInt(reader.readLine());
         int[] result = new int[number_of_test];
